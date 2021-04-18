@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
 // Update a tab
 router.put('/:id', getTab, async (req, res) => {
     try {
-        const resData = await res.tab.update(req.body)
+        const resData = await res.tab.update(req.body, { new: true, runValidators: true })
         res.json(resData)
     } catch (err) {
         res.status(400).json({ message: err.message })

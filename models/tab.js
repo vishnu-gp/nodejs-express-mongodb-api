@@ -11,7 +11,11 @@ const tabSchema = new mongoose.Schema({
     },
     dataPoints: {
         type: [{
-            dataType: { type: String, required: true },
+            dataType: {
+                type: String,
+                enum: ['selection', 'text', 'number', 'date'],
+                required: true
+            },
             label: { type: String },
             description: { type: String },
             options: { type: Array },
