@@ -28,7 +28,28 @@ router.put('/:id', (req, res) => {
 })
 
 // Delete a tab
-router.delete('/:id', (req, res) => {
+router.delete('/:id', getTab, async (req, res) => {
+    try {
+        await res.tab.remove()
+        res.json({ message: 'Deleted Tab' })
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
 })
+
+// Middleware to get tab
+async function getTab(req, res, next) {
+    try {
+        tab = await Tab.findById(req.params.id)
+        if (tab == null) {
+            return res.status(404).json({ message: 'Cant find tab' })
+        }
+    } catch (err) {
+        return res.status(500).json({ message: err.message })
+    }
+
+    res.tab = tab
+    next()
+}
 
 module.exports = router
