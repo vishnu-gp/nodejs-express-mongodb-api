@@ -1,8 +1,15 @@
 const express = require('express')
 const router = express.Router()
+const Tab = require('../models/tab')
 
 // Get all tabs
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+    try {
+        const tabs = await Tab.find()
+        res.json(tabs)
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
 })
 
 // Create a tab
