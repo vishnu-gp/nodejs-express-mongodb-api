@@ -1,4 +1,4 @@
-# NodeJS-Express-Mongo-API
+# NodeJS-Express-MongoDB-API
 
 
 ## Installation
