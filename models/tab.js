@@ -13,8 +13,9 @@ const tabSchema = new mongoose.Schema({
         type: [{
             dataType: { type: String, required: true },
             label: { type: String },
-            description: { String },
+            description: { type: String },
             options: { type: Array },
+            placeholder: { type: String }
         }],
     },
 })

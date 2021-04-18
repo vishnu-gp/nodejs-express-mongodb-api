@@ -24,7 +24,13 @@ router.post('/', async (req, res) => {
 })
 
 // Update a tab
-router.put('/:id', (req, res) => {
+router.put('/:id', getTab, async (req, res) => {
+    try {
+        const resData = await res.tab.update(req.body)
+        res.json(resData)
+    } catch (err) {
+        res.status(400).json({ message: err.message })
+    }
 })
 
 // Delete a tab
