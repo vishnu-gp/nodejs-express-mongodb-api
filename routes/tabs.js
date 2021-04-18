@@ -13,7 +13,14 @@ router.get('/', async (req, res) => {
 })
 
 // Create a tab
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
+    const tab = new Tab(req.body)
+    try {
+        const newTab = await tab.save()
+        res.status(201).json(newTab)
+    } catch (err) {
+        res.status(400).json({ message: err.message })
+    }
 })
 
 // Update a tab
