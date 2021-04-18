@@ -11,4 +11,7 @@ db.once('open', () => console.log('Connected to database'))
 
 app.use(express.json())
 
+const tabsRouter = require('./routes/tabs')
+app.use('/tabs', tabsRouter)
+
 app.listen(5000, () => console.log('Server started'))
